@@ -1,0 +1,26 @@
+.episode-list {
+    display: flex;
+    gap: 1em;
+    justify-content: center;
+    margin-top: 1em;
+}
+
+.episode-list button {
+    padding: 0.5em 1em;
+    font-size: 1em;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+}
+
+.episode-list button:hover {
+    background-color: #555;
+}
+
+.video-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2em;
+}
