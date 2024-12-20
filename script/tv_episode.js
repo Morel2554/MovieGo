@@ -1,8 +1,10 @@
-function loadEpisode(episodeSrc) {
-    const videoPlayer = document.getElementById("video-player");
+// Function to dynamically load episodes
+function loadEpisode(episodePath) {
+    const videoPlayer = document.getElementById('video-player');
+    const sourceElement = videoPlayer.querySelector('source');
 
-    // Update src of the video player directly
-    videoPlayer.src = episodeSrc;
-    videoPlayer.load();
-    videoPlayer.play();  // Start playing after source update
+    // Update video source
+    sourceElement.src = episodePath;
+    videoPlayer.load(); // Reload video player with the new source
+    videoPlayer.play(); // Optionally start playing automatically
 }
