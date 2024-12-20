@@ -8,23 +8,68 @@ body {
 
 /* Navbar styling */
 .navbar {
-    background-color: #333;
-    color: #fff;
-    padding: 1em;
+    font-family: 'Arial', sans-serif;
+    position: sticky; /* Navbar tetap di atas saat scroll */
+    top: 0;
+    background: linear-gradient(to top, rgba(247, 81, 69, 0.8), transparent),
+                linear-gradient(to bottom, rgba(247, 81, 69, 0.6), transparent);
+    overflow: hidden;
+    color: white;
+    padding: 1.5em;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Logo styling */
+.logo {
+    font-size: 2.5em; /* Lebih besar untuk menonjolkan */
+    font-weight: 900; /* Bold tebal */
+    letter-spacing: 2px;
+    color: white;
+    text-transform: uppercase;
+}
+
+/* Navbar links */
 .navbar a {
-    color: #fff;
-    margin-left: 1em;
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
     text-decoration: none;
+    font-size: 1.5em;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .navbar a:hover {
-    color: #ddd;
+    background-color: transparent;
+    color: black; /* Efek hover dengan warna kontras */
 }
+
+/* Responsive Menu List */
+.menu-list {
+    float: right;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 600px) {
+    .navbar a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+
+    .logo,
+    .menu-list {
+        float: none;
+        text-align: center;
+    }
+}
+
 
 /* Main content styling */
 .content {
