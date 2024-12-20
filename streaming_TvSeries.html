@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TV Series Title - MovieGo</title>
+    <title>The Boys - Season 1</title>
     <link rel="stylesheet" href="styles/index_styles.css">
-    <script src="tv_episode.js" defer></script>
+    <script defer src="script/tv_episode.js">
+        
+    </script>
 </head>
 <body>
     <!-- Navbar -->
@@ -20,21 +22,21 @@
 
     <!-- TV Series Content -->
     <div class="content">
-        <h1>TV Series Title</h1>
+        <h1>The Boys - Season 1</h1>
         <p>Select an episode to start watching.</p>
 
         <!-- Episode List -->
         <div class="episode-list">
-            <button onclick="loadEpisode('TvSeries/The Boys/Season1/the-boys-season-1-episode-1-2019.mp4')">Episode 1</button>
-            <button onclick="loadEpisode('TvSeries/The Boys/Season1/the-boys-season-1-episode-2-2019.mp4')">Episode 2</button>
-            <button onclick="loadEpisode('TvSeries/The Boys/Season1/the-boys-season-1-episode-3-2019.mp4')">Episode 3</button>
+            <button onclick="loadEpisode('TvSeries/The Boys/Season1/the-boys-season-1-episode-1.mp4')">Episode 1</button>
+            <button onclick="loadEpisode('TvSeries/The Boys/Season1/the-boys-season-1-episode-2.mp4')">Episode 2</button>
+            <button onclick="loadEpisode('TvSeries/The Boys/Season1/the-boys-season-1-episode-3.mp4')">Episode 3</button>
             <!-- Tambahkan lebih banyak tombol episode sesuai kebutuhan -->
         </div>
 
         <!-- Video Player -->
         <div class="video-container">
             <video id="video-player" width="800" controls>
-                <source src="TvSeries/The Boys/Season1/the-boys-season-1-episode-1-2019.mp4" type="video/mp4">
+                <source src="TvSeries/The Boys/Season1/the-boys-season-1-episode-1.mp4" type="video/mp4">
             </video>
         </div>
     </div>
