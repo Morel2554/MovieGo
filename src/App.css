@@ -17,7 +17,57 @@
   color: #61dafb;
 }
 
-.Movie-container {
+.Watch-button:hover {
+  background-color: #21a1f1;
+}
+
+.GenresPage {
+  padding: 20px;
+  text-align: center;
+  background-color: #282c34;
+  color: white; 
+  min-height: 100vh;
+}
+
+.ContentTypeToggle button {
+  margin: 5px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.ContentTypeToggle .active {
+  font-weight: bold;
+  background-color: #007bff;
+  color: white;
+}
+
+.GenresList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.GenreButton {
+  margin: 5px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.GenreButton:hover,
+.GenreButton.selected {
+  background-color: #007bff;
+  color: white;
+}
+
+.Results {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -26,142 +76,154 @@
   gap: 20px;
 }
 
-.Movie-wrapper {
-  width: 500px;
-  background-color: antiquewhite;
-  color: black;
-}
-
-.Movie-search {
-  height: 48px;
-  font-size: 24px;
-  margin-bottom: 32px;
-  padding: 16px;
-  font-weight: bold;
-  width: 475px;
-}
-
-.Movie-title {
-  height: 60px;
-  margin-top: 26px;
-  font-weight: bold;
-}
-
-.Movie-date {
-  margin-top: 26px;
-  font-style: italic;
-}
-
-.Movie-rate {
-  color: red;
-  margin-bottom: 24px;
-  font-weight: bold;
-  font-size: 1.2em;
-  text-decoration: underline;
-}
-
-.Sidebar {
+.ResultItem {
   width: 200px;
-  background-color: #333;
-  color: #fff;
-  padding: 20px;
-  height: 100vh;
+  text-align: center;
 }
 
-.Watch-button {
-  margin-bottom: 16px;
+.ResultImage {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.Pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  gap: 10px;
+}
+
+.Pagination-button {
   padding: 10px 20px;
   font-size: 16px;
-  background-color: black;
-  color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  transition: background-color 0.3s;
 }
 
-.Watch-button:hover {
-  background-color: #21a1f1;
+.Pagination-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
 }
 
-.App.light {
-  background-color: #f0f0f0;
-  color: #000;
+.Pagination-info {
+  font-size: 16px;
+  font-weight: bold;
 }
 
-.App.light .App-header {
-  background-color: #ffffff;
+
+.Page-container {
+  padding: 20px;
+  color: white;
 }
 
-.App.light .Movie-wrapper {
-  background-color: #ffffff;
-  color: #000;
+.Page-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2.5em;
+  color: #21a1f1;
 }
 
-.App.dark {
-  background-color: #282c34;
+.Grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.Card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #333;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  height: 100%; 
+}
+
+.Card-image {
+  width: 100%;
+  height: auto;
+}
+
+.Card-details {
+  padding: 15px;
+  flex-grow: 1;
+}
+
+.Card-title {
+  font-size: 1.2em;
+  margin-bottom: 10px;
   color: #fff;
 }
 
-.App.dark .App-header {
-  background-color: #282c34;
+.Card-date,
+.Card-rating {
+  font-size: 0.9em;
+  margin-bottom: 5px;
+  color: #ddd;
 }
 
-.App.dark .Movie-wrapper {
-  background-color: antiquewhite;
-  color: #000;
+.Card-button {
+  margin: 15px;
+  padding: 10px 15px;
+  font-size: 0.9em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #21a1f1;
+  color: white;
+  transition: background-color 0.3s ease;
 }
 
-body {
-  transition: background-color 0.3s, color 0.3s;
+.Card-button:hover {
+  background-color: #1e90ff;
 }
 
 body.light {
   background-color: #f0f0f0;
-  color: #000;
+  color: #333;
 }
 
-/* Dark theme */
+body.light .Navbar {
+  background-color: #fff;
+  color: #333;
+}
+
+body.light .Navbar-links .Navbar-link {
+  color: #333;
+}
+
+body.light .theme-toggle-button {
+  background-color: #f1f1f1;
+  color: #333;
+}
+
 body.dark {
   background-color: #282c34;
   color: #fff;
 }
 
-.Title-button {
-  color: #21a1f1;
+body.dark .Navbar {
+  background-color: #333;
+  color: #fff;
 }
 
-.theme-toggle-button {
-  background-color: #4caf50; /* Light green */
-  color: white;
-  border: none;
-  border-radius: 24px;
-  font-size: 16px;
-  font-weight: bold;
-  padding: 10px 20px;
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s ease, transform 0.2s ease;
+body.dark .Navbar-links .Navbar-link {
+  color: #fff;
 }
 
-.theme-toggle-button:hover {
-  background-color: #45a049; /* Darker green on hover */
-  transform: scale(1.05); /* Slightly larger on hover */
+body.dark .theme-toggle-button {
+  background-color: #333;
+  color: #fff;
 }
 
-.theme-toggle-button:active {
-  transform: scale(0.95); /* Slightly smaller on click */
-}
-
-.App.light .theme-toggle-button {
-  background-color: #007bff; /* Blue for light theme */
-}
-
-.App.light .theme-toggle-button:hover {
-  background-color: #0056b3; /* Darker blue for light theme on hover */
-}
-
-.theme-toggle-button {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }

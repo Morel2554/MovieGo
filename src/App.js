@@ -1,87 +1,49 @@
-import "./App.css"
-import { getMovieList, searchMovie, getMovieDetails } from "./api"
-import { useEffect, useState } from "react"
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import MoviesPage from "./components/MoviesPage";
+import TVSeriesPage from "./components/TVSeriesPage";
+import GenresPage from "./components/GenresPage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import { AuthProvider } from "./context/AuthContext";
+import "./App.css";
 
 const App = () => {
-  const [popularMovies, setPopularMovies] = useState([])
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    getMovieList().then((result) => {
-      setPopularMovies(result)
-    })
-  }, [])
-
-  const PopularMovieList = () => {
-    return popularMovies.map((movie, i) => {
-      const handleWatchNow = async () => {
-        const details = await getMovieDetails(movie.id);
-        if (details.homepage) {
-          window.open(details.homepage, "_blank"); // Opens the movie's homepage in a new tab
-        } else {
-          alert("No streaming platform available for this movie.");
-        }
-      };
-
-      return (
-        <div className="Movie-wrapper" key={i}>
-          <div className="Movie-title">{movie.title}</div>
-          <img
-            className="Movie-image"
-            src={`${process.env.REACT_APP_BASEIMGURL}/${movie.poster_path}`}
-          />
-          <div className="Movie-date">release: {movie.release_date}</div>
-          <div className="Movie-rate">{movie.vote_average}</div>
-          <button className="Watch-button" onClick={handleWatchNow}>
-            Watch Now
-          </button>
-        </div>
-      )
-    })
-  }
-
-  const search = async (q) => {
-    if (q.length > 3) {
-      const query = await searchMovie(q)
-      setPopularMovies(query.results)
-    }
-  }
-
-  const [theme, setTheme] = useState("dark");
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") || "dark";
-    setTheme(savedTheme);
-    document.body.className = savedTheme;
-  }, []);
+    document.body.className = theme;
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   const toggleTheme = () => {
-    const newTheme = theme === "dark" ? "light" : "dark";
-    setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
-    document.body.classList.remove(theme);
-    document.body.classList.add(newTheme);
+    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+  };
+
+  const handleSearch = (query) => {
+    setSearchQuery(query);
   };
 
   return (
-    <div className={`App ${theme}`}>
-      <header className="App-header">
-        <h1 className="Title-button">PPL MOVIE</h1>
-        <button className="theme-toggle-button" onClick={toggleTheme}>
-          Switch to {theme === "dark" ? "🌞 Light Mode " : "🌙 Dark Mode"} 
-        </button> <br></br>
-        <input
-          placeholder="Search Movies..."
-          className="Movie-search"
-          onChange={({ target }) => search(target.value)}
-        />
-        <div className="Movie-container">
-          <PopularMovieList />
+    <AuthProvider>
+      <Router>
+        <div className={`App ${theme}`}>
+          <Navbar theme={theme} toggleTheme={toggleTheme} onSearch={handleSearch} />
+
+          <Routes>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/" element={<MoviesPage searchQuery={searchQuery} />} />
+            <Route path="/movies" element={<MoviesPage searchQuery={searchQuery} />} />
+            <Route path="/tvseries" element={<TVSeriesPage searchQuery={searchQuery} />} />
+            <Route path="/genres" element={<GenresPage />} />
+          </Routes>
         </div>
-      </header>
-    </div>
-  )
+      </Router>
+    </AuthProvider>
+  );
+};
 
-  
-}
-
-export default App
+export default App;
