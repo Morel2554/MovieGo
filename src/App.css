@@ -59,3 +59,109 @@
   font-size: 1.2em;
   text-decoration: underline;
 }
+
+.Sidebar {
+  width: 200px;
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  height: 100vh;
+}
+
+.Watch-button {
+  margin-bottom: 16px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.Watch-button:hover {
+  background-color: #21a1f1;
+}
+
+.App.light {
+  background-color: #f0f0f0;
+  color: #000;
+}
+
+.App.light .App-header {
+  background-color: #ffffff;
+}
+
+.App.light .Movie-wrapper {
+  background-color: #ffffff;
+  color: #000;
+}
+
+.App.dark {
+  background-color: #282c34;
+  color: #fff;
+}
+
+.App.dark .App-header {
+  background-color: #282c34;
+}
+
+.App.dark .Movie-wrapper {
+  background-color: antiquewhite;
+  color: #000;
+}
+
+body {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.light {
+  background-color: #f0f0f0;
+  color: #000;
+}
+
+/* Dark theme */
+body.dark {
+  background-color: #282c34;
+  color: #fff;
+}
+
+.Title-button {
+  color: #21a1f1;
+}
+
+.theme-toggle-button {
+  background-color: #4caf50; /* Light green */
+  color: white;
+  border: none;
+  border-radius: 24px;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.theme-toggle-button:hover {
+  background-color: #45a049; /* Darker green on hover */
+  transform: scale(1.05); /* Slightly larger on hover */
+}
+
+.theme-toggle-button:active {
+  transform: scale(0.95); /* Slightly smaller on click */
+}
+
+.App.light .theme-toggle-button {
+  background-color: #007bff; /* Blue for light theme */
+}
+
+.App.light .theme-toggle-button:hover {
+  background-color: #0056b3; /* Darker blue for light theme on hover */
+}
+
+.theme-toggle-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

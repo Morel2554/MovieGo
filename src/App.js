@@ -1,5 +1,5 @@
 import "./App.css"
-import { getMovieList, searchMovie } from "./api"
+import { getMovieList, searchMovie, getMovieDetails } from "./api"
 import { useEffect, useState } from "react"
 
 const App = () => {
@@ -13,6 +13,15 @@ const App = () => {
 
   const PopularMovieList = () => {
     return popularMovies.map((movie, i) => {
+      const handleWatchNow = async () => {
+        const details = await getMovieDetails(movie.id);
+        if (details.homepage) {
+          window.open(details.homepage, "_blank"); // Opens the movie's homepage in a new tab
+        } else {
+          alert("No streaming platform available for this movie.");
+        }
+      };
+
       return (
         <div className="Movie-wrapper" key={i}>
           <div className="Movie-title">{movie.title}</div>
@@ -22,6 +31,9 @@ const App = () => {
           />
           <div className="Movie-date">release: {movie.release_date}</div>
           <div className="Movie-rate">{movie.vote_average}</div>
+          <button className="Watch-button" onClick={handleWatchNow}>
+            Watch Now
+          </button>
         </div>
       )
     })
@@ -34,12 +46,31 @@ const App = () => {
     }
   }
 
+  const [theme, setTheme] = useState("dark");
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    setTheme(savedTheme);
+    document.body.className = savedTheme;
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === "dark" ? "light" : "dark";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+    document.body.classList.remove(theme);
+    document.body.classList.add(newTheme);
+  };
+
   return (
-    <div className="App">
+    <div className={`App ${theme}`}>
       <header className="App-header">
-        <h1>DEA MOVIE MANIA</h1>
+        <h1 className="Title-button">PPL MOVIE</h1>
+        <button className="theme-toggle-button" onClick={toggleTheme}>
+          Switch to {theme === "dark" ? "🌞 Light Mode " : "🌙 Dark Mode"} 
+        </button> <br></br>
         <input
-          placeholder="cari film kesayangan..."
+          placeholder="Search Movies..."
           className="Movie-search"
           onChange={({ target }) => search(target.value)}
         />
@@ -49,6 +80,8 @@ const App = () => {
       </header>
     </div>
   )
+
+  
 }
 
 export default App
